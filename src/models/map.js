@@ -1,7 +1,11 @@
 import { prisma } from "../db/index.js";
 
 const findMany = async () => {
-  const maps = await prisma.map.findMany();
+  const maps = await prisma.map.findMany({
+    include: {
+      targets: true,
+    },
+  });
   return maps;
 };
 

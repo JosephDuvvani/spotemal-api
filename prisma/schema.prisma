@@ -13,6 +13,7 @@ model Map {
   imageUrl String
   targets  Target[]
   scorers  Scorer[]
+  Game     Game[]
 }
 
 model Target {
@@ -22,6 +23,15 @@ model Target {
   position Json
   map      Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
   mapId    String
+}
+
+model Game {
+  id      String    @id @default(uuid())
+  map     Map       @relation(fields: [mapId], references: [id], onDelete: Cascade)
+  mapId   String
+  spotted Json?
+  start   DateTime?
+  end     DateTime?
 }
 
 model Scorer {

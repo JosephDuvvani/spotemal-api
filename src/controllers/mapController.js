@@ -9,18 +9,4 @@ const allMapsGet = async (req, res) => {
   }
 };
 
-const mapGet = async (req, res) => {
-  const { mapId } = req.params;
-
-  try {
-    const map = await models.Map.find(mapId);
-
-    if (!map) res.status(404).json({ error: { msg: "Map Not Found" } });
-
-    res.json({ map });
-  } catch (err) {
-    res.status(500).json({ error: { msg: "Server Error" } });
-  }
-};
-
-export { allMapsGet, mapGet };
+export { allMapsGet };

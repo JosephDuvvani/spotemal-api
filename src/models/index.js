@@ -1,4 +1,4 @@
 import Map from "./map.js";
-import Target from "./target.js";
+import Game from "./game.js";
 
-export default { Map, Target };
+export default { Map, Game };

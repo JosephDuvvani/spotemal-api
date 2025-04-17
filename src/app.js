@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { map, target } from "./routes/index.js";
+import { game, map } from "./routes/index.js";
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/maps", map);
-app.use("/target", target);
+app.use("/game", game);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

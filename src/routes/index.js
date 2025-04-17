@@ -1,4 +1,4 @@
 import map from "./mapRouter.js";
-import target from "./targetRouter.js";
+import game from "./gameRouter.js";
 
-export { map, target };
+export { map, game };
