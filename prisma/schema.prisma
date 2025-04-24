@@ -35,9 +35,9 @@ model Game {
 }
 
 model Scorer {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
   username String
-  time     Int
-  map      Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
+  time     Decimal @db.Decimal(10, 2)
+  map      Map     @relation(fields: [mapId], references: [id], onDelete: Cascade)
   mapId    String
 }
