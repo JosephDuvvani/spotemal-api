@@ -4,6 +4,11 @@ const findMany = async () => {
   const maps = await prisma.map.findMany({
     include: {
       targets: true,
+      scorers: {
+        orderBy: {
+          time: "asc",
+        },
+      },
     },
   });
   return maps;
