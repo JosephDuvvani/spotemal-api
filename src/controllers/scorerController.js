@@ -21,7 +21,7 @@ const scorersPost = async (req, res) => {
 
     if (existingScorers.length < 10) {
       const newScorer = await models.Scorer.create(mapId, scorer);
-      return res.status(201).json(newScorer);
+      return res.status(201).json({ scorer: newScorer });
     }
 
     const lastScorer = existingScorers[existingScorers.length - 1];
@@ -32,10 +32,28 @@ const scorersPost = async (req, res) => {
     }
     await models.Scorer.destroy(lastScorer.id);
     const newScorer = await models.Scorer.create(mapId, scorer);
-    res.status(201).json(newScorer);
+    res.status(201).json({ scorer: newScorer });
   } catch (error) {
     res.status(500).json({ error: "Error creating scorer" });
   }
 };
 
-export { scorersPost };
+const scorersGet = async (req, res) => {
+  const { mapId } = req.params;
+
+  try {
+    const scorers = await models.Scorer.findMany(mapId);
+
+    if (!scorers) {
+      return res.status(400).json({
+        error: "Scorers Not Found",
+      });
+    }
+
+    res.status(200).json({ scorers });
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching scorers" });
+  }
+};
+
+export { scorersPost, scorersGet };
